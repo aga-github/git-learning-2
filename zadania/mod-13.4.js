@@ -1,3 +1,5 @@
+// 13.4. Korzystanie z modułów:
+
 var os = require('os');
 
 process.stdin.setEncoding('utf-8');
@@ -14,6 +16,9 @@ process.stdin.on('readable', function() {
                 process.stdout.write('hello!\n');
                 break;
             case '/getOSinfo':
+                getOSinfo();
+                break;
+                /* MNIEJ ELEGANCKA & DŁUŻSZA WERSJA
                 var type = os.type();
                 var release = os.release();
                 if(type === 'Darwin') {
@@ -26,14 +31,34 @@ process.stdin.on('readable', function() {
                 var cpu = os.cpus()[0].model;
                 console.log('CPU model:', cpu);
                 var uptime = os.uptime();
-                console.log('Uptime: ~', (uptime / 60).toFixed(0), 'min');
+                console.log('Uptime: ~', (uptime / 60).toFixed(0), 'sek.');
                 var userInfo = os.userInfo();
                 console.log('User name:', userInfo.username);
                 console.log('Home dir:', userInfo.homedir);
-                break;       
+                break;  
+                */     
             default:
                 process.stderr.write('Wrong instruction!\n');
         };
+// BARDZIEJ CZYTELNA WERSJA, Z FUNKCJĄ NA DOLE, A WYWOŁANIEM FUNKCJI W CASE POWYŻEJ:
+        function getOSinfo() {
+            var type = os.type();
+            if(type === 'Darwin') {
+                type = 'OSX';
+            } else if(type === 'Windows_NT') {
+                type = 'Windows';
+            }
+            var release = os.release();
+            var cpu = os.cpus()[0].model;
+            var uptime = os.uptime();
+            var userInfo = os.userInfo();
+            console.log('System:', type);
+            console.log('Release:', release);
+            console.log('CPU model:', cpu);
+            console.log('Uptime: ~', (uptime / 60).toFixed(0), 'min');
+            console.log('User name:', userInfo.username);
+            console.log('Home dir:', userInfo.homedir);
+        }
     }
 });
 
