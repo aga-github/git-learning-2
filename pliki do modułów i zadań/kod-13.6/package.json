@@ -1,7 +1,7 @@
 {
   "name": "zadania",
   "version": "1.0.0",
-  "description": "zadanie dla mentora",
+  "description": "EventEmitter z modułu 13.6",
   "main": "index.js",
   "scripts": {
     "test": "npm-run-all test:*",
