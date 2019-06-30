@@ -31,7 +31,7 @@ process.stdin.on('readable', function() {
                 OSinfo.print();
                 break;
             default:
-                process.stderr.write('Wrong instruction! Choose /exit to quit. \n');
+                process.stderr.write('Wrong instruction!\nInsert correct one or choose /exit to quit. \n');
         };
 // new: emitowanie zdarzenia afterCommand (bez parametru)
 emitter.emit('afterCommand');
